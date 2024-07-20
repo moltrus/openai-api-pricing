@@ -1,11 +1,11 @@
-# Openai API Pricing
+# OpenAI API Pricing
 
-A simple Python script to track the amount spend based on usage parameters for all OpenAI APIs.
+A simple Python script to track the amount spent based on usage parameters for all OpenAI APIs.
 
 ## Features
 
 - **Token-Based Pricing**: Calculates costs based on input and output tokens for models like GPT and others.
-- **Image-Based Pricing**: Computes costs based on the number of images processed using DALL-E models.
+- **Image-Based Pricing**: Computes costs based on the dimensions and number of images generated using DALL-E models.
 - **Time-Based Pricing**: Calculates costs for voice model usage based on minutes.
 - **Image Processing Pricing**: Computes costs for specific image processing models based on image dimensions.
 
@@ -16,7 +16,7 @@ A simple Python script to track the amount spend based on usage parameters for a
 - **model**: Name of the AI model being used.
 - **token_input**: Number of input tokens (if applicable).
 - **token_output**: Number of output tokens (if applicable).
-- **img_num**: Number of images processed (if applicable).
+- **img_num**: Number of images generated (if applicable).
 - **minutes**: Duration of usage in minutes (if applicable).
 - **img_w** and **img_h**: Width and height of the image being processed (if applicable).
 
