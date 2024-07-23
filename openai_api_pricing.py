@@ -2,6 +2,12 @@ from math import ceil
 
 model_price_map = {
 
+    # GPT-4o mini
+    'gpt-4o-mini-input':0.000150,
+    'gpt-4o-mini-output':0.000600,
+    'gpt-4o-mini-vision':0.005,
+    'gpt-4o-mini-2024-07-18-input':0.000150,
+    'gpt-4o-mini-2024-07-18-output':0.000600,
     # GPT-4o
     'gpt-4o-input':0.0050,
     'gpt-4o-output':0.0150,
