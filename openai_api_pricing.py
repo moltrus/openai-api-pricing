@@ -72,7 +72,7 @@ model_price_map = {
 
 def calculate_pricing(model,token_input=0,token_output=0,img_num=0,minutes=0.00,img_w=0,img_h=0):
 
-    if token_input != 0 and model[0:3] in ['gpt','dav','bab'] :
+    if token_input != 0 and model[0:3] in ['gpt','dav','bab'] and (img_w and img_h) == 0:
 
         token_price = model_price_map.get(model+'-input')
         input_cost = (token_input/1000)*token_price
@@ -95,14 +95,14 @@ def calculate_pricing(model,token_input=0,token_output=0,img_num=0,minutes=0.00,
 
         return whisp_price
 
-    elif img_w != 0 and img_h != 0 and model in ['gpt-4o','gpt-4-vision-preview']:
+    elif (img_w != 0 and img_h != 0) and model in ['gpt-4o-mini','gpt-4o','gpt-4-vision-preview']:
 
         price_per_thousand_tokens = 0.005
         num_tiles = ceil(img_w / 512) * ceil(img_h / 512)
         base_tokens = 85
         tile_tokens = 170 * num_tiles
         total_tokens = base_tokens + tile_tokens
-        image_price = (total_tokens / 1_000) * price_per_thousand_tokens
+        image_price = (total_tokens / 1000) * price_per_thousand_tokens
 
         token_price = model_price_map.get(model+'-input')
         input_cost = (token_input/1000)*token_price
@@ -112,5 +112,4 @@ def calculate_pricing(model,token_input=0,token_output=0,img_num=0,minutes=0.00,
         return input_cost + output_cost + round(image_price, 6)
 
     else:
-        print('Error')
         return None
