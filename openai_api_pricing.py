@@ -2,6 +2,16 @@ from math import ceil
 
 model_price_map = {
 
+    # OpenAI o1-preview
+    'o1-preview-input':0.015,
+    'o1-preview-output':0.060,
+    'o1-preview-2024-09-12-input':0.015,
+    'o1-preview-2024-09-12-output':0.060,
+    # OpenAI o1-mini
+    'o1-mini-input':0.003,
+    'o1-mini-output':0.012,
+    'o1-mini-2024-09-12-input':0.003,
+    'o1-mini-2024-09-12-output':0.012,
     # GPT-4o mini
     'gpt-4o-mini-input':0.000150,
     'gpt-4o-mini-output':0.000600,
@@ -33,14 +43,16 @@ model_price_map = {
     'dalle-3-hd-1024x1792':0.120,
     'dalle-3-hd-1792x1024':0.120,
     # Embedding
-    'text-embedding-3-large':0.00002,
-    'text-embedding-3-small':0.00013,
+    'text-embedding-3-large':0.00013,
+    'text-embedding-3-small':0.00002,
     'text-embedding-ada-002':0.00010,
     # Voice
     'whisper-1':0.006,
     'tts-1':0.015,
     'tts-1-hd':0.030,
     # Older Models
+    "chatgpt-4o-latest-input": 0.0050,
+    "chatgpt-4o-latest-output": 0.0150,
     "gpt-4-turbo-input": 0.0100,
     "gpt-4-turbo-output": 0.0300,
     "gpt-4-turbo-2024-04-09-input": 0.0100,
@@ -72,7 +84,7 @@ model_price_map = {
 
 def calculate_pricing(model,token_input=0,token_output=0,img_num=0,minutes=0.00,img_w=0,img_h=0):
 
-    if token_input != 0 and model[0:3] in ['gpt','dav','bab'] and (img_w and img_h) == 0:
+    if token_input != 0 and model[0:4] in ['gpt','dav','bab','o1','chat'] and (img_w and img_h) == 0:
 
         token_price = model_price_map.get(model+'-input')
         input_cost = (token_input/1000)*token_price
@@ -81,14 +93,14 @@ def calculate_pricing(model,token_input=0,token_output=0,img_num=0,minutes=0.00,
 
         return input_cost + output_cost
 
-    elif img_num !=0 and model[:5] in ['dalle']:
+    elif img_num !=0 and model[:5] in ['dalle','dall']:
 
         dimn_price = model_price_map.get(model)
         dalle_price = dimn_price*img_num
 
         return dalle_price
 
-    elif minutes != 0.00 and model in ['whisper-1']:
+    elif minutes != 0.00 and model in ['whisper-1','tts-1','tts-1-hd']:
 
         mint_price = model_price_map.get(model)
         whisp_price = mint_price*minutes
