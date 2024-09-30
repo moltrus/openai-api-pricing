@@ -2,6 +2,10 @@
 
 A simple Python script to track the amount spent based on usage parameters for all OpenAI APIs.
 
+## Updates 
+Added pricing for OpenAI o1
+Minor fixes
+
 ## Features
 
 - **Token-Based Pricing**: Calculates costs based on input and output tokens for models like GPT and others.
