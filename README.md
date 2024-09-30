@@ -3,7 +3,7 @@
 A simple Python script to track the amount spent based on usage parameters for all OpenAI APIs.
 
 ## Updates 
-Added pricing for OpenAI o1
+Added pricing for OpenAI o1 \
 Minor fixes
 
 ## Features
